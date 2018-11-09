@@ -6,46 +6,148 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Crystal Collector</title>
-  <!-- jquery -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
-  <!-- logic -->
-  <script type="text/javascript" src="/assets/javascript/game.js"></script>
+  <!-- reset -->
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <!-- bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
   <!-- css -->
   <link rel="stylesheet" href="assets/css/style.css">
-
 </head>
 
 <body>
 
-  <h1 id="title">Crystal Collector!</h1>
+  <div class="container">
 
-  <div id="rules">
-    <h4>At the beginning of each round you'll be given a random number.</h4>
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="text-center"><strong>| Crystal Collector! |</strong></h1>
+      </div>
+    </div>
 
-    <h4>Each of the crystals below, when clicked, will add a specific amount of points to your score</h4>
+    <!-- first row -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-primary">
 
-    <h4>To win the game you must match your score to the target score. If you go above the target score you'll lose.</h4>
+          <div id="instructionTitle" class="panel-heading">
+            <h2 class="panel-title text-center">| Instructions |</h2>
+          </div>
 
-    <h4>The value of each crystal is randomized at the start of each round, and hidden until clicked.</h4>
+          <div id="instructions" class="panel-body">
+            <p><small>
+                At the beginning of each round you'll be given a random number. Each of the crystals below, when
+                clicked, will add a specific amount of points to your score. To win the game you must match your score
+                to the target score. If you go above the target score you'll lose. The value of each crystal is
+                randomized at the start of each round, and hidden until clicked.
+              </small></p>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- first row end-->
+
+    <!-- second row -->
+    <div class="row">
+
+      <!-- target score -->
+      <div class="col-lg-3">
+        <div class="panel panel-primary">
+
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">| Target Score |</h3>
+          </div>
+
+          <div class="panel-body">
+            <h3 class="text-center" id="target-score"></h3>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- player score -->
+      <div class="col-lg-3">
+        <div class="panel panel-primary">
+
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">| Your Score |</h3>
+          </div>
+
+          <div class="panel-body">
+            <h3 class="text-center"></h3>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- crystals -->
+      <div class="col-lg-6">
+        <div class="panel panel-primary">
+
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">| Rupees!!! |</h3>
+          </div>
+
+          <div class="panel-body text-center">
+            <img class="rupee" src="/assets/images/green.gif" alt="green">
+
+            <img class="rupee" src="/assets/images/blue.gif" alt="blue">
+
+            <img class="rupee" src="/assets/images/red.gif" alt="red">
+
+            <img class="rupee" src="/assets/images/yellow.png" alt="yellow">
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- second row end -->
+
+    <!-- third row -->
+    <div class="row">
+
+      <!-- wins -->
+      <div class="col-lg-6">
+        <div class="panel panel-primary">
+
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">Wins</h3>
+          </div>
+
+          <div class="panel-body">
+            <h3 class="text-center" id="win-count">0</h3>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- losses -->
+      <div class="col-lg-6">
+        <div class="panel panel-primary">
+
+          <div class="panel-heading">
+            <h3 class="panel-title text-center">Losses</h3>
+          </div>
+
+          <div class="panel-body">
+            <h3 class="text-center" id="loss-count">0</h3>
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+    <!-- third row end -->
   </div>
+  <!-- container end -->
 
-  <div id="display-div">
-    <!-- target number -->
-    <div id="target-div"></div>
+  <!-- jquery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
 
-    <!-- Wins/Losses -->
-    <div id="win-lose-div"></div>
-  </div>
-
-  <div>
-    <!-- Crystals -->
-    <div id="crystal-div"></div>
-
-    <div id="score-text">Your total score is:</div>
-    
-    <!-- current score -->
-    <div id="score-div"></div>
-  </div>
+  <!-- logic -->
+  <script src="/assets/javascript/game.js"></script>
 
 </body>
 
