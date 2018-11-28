@@ -97,7 +97,7 @@ $(document).ready(function() {
 
       let crystalDiv = $("<div class='crystals-button' data-name='" + key + "'>");
 
-      let crystalImg = $("<img alt='image' class='crystal-img'>").attr('src', crystals[key].url);
+      let crystalImg = $("<img alt='image' class='rupee'>").attr('src', crystals[key].url);
 
       crystalDiv.append(crystalImg);
 
