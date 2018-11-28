@@ -56,33 +56,41 @@ $(document).ready(function() {
 
     // new target number
     targetNum = numGen();
-    $("#random-area").text(targetNum);
+    $("#target-score").text(targetNum);
   }
   // >>>
 
   // update page
   function updateDom(userWin) {
     
-    $("#win-area").empty();
+    $("#win-count").empty();
 
     if (userWin) {
-      $("#win-area").append($("<p>").text('you Won!!'));
+      $("#win-count").append($("<h3>").text('you Won!!'));
       setup();
       renderScore();
     } else {
-      $("#win-area").append($("<p>").text('You Lost!!'));
+      $("#loss-count").append($("<h3>").text('You Lost!!'));
       setup();
       renderScore();
     }
 
+    // build and append win/loss display
     let win = $("<span>").text(wins);
     let lose = $("<span>").text(losses);
 
-    let winPG = $("<P>").text("Wins: ");
-    let losePG = $("<P>").text("Losses: ");
+    let winPG = $("<h3>").text("Wins: ");
+    let losePG = $("<h3>").text("Losses: ");
+
+    winPG.append(win);
+    losePG.append(lose);
+
+    $("#win-count").append(winPG);
+    $("#loss-count").append(losePG);
   }
   // >>>
 
+  // render crystals
   function renderCrystals() {
     
     for (let key in crystals) {
@@ -98,7 +106,7 @@ $(document).ready(function() {
   }
   // >>>
 
-  // update currentScore
+  // update current score
   function updateScore(crystal) {
 
     currentScore += crystals[crystal.attr("data-name")].amount;
@@ -110,10 +118,34 @@ $(document).ready(function() {
 
     let scoreNumDiv = $("<div id='score-number'>").text(currentScore);
 
-    $("#score-area").html();
-    $("#score-area").html(scoreNumDiv);
+    $("#current-score").html();
+    $("#current-score").html(scoreNumDiv);
   }
   // >>>
 
+  // call functions to start game
+  setup();
+  updateDom();
+  renderCrystals();
+  renderScore();
+
+  // on.click event for crystals
+  $(".rupee").on("click", function(event) {
+    updateScore($(this));
+    renderScore();
+
+    // check for win/loss
+    if (currentScore === targetNum) {
+      wins++;
+      setup();
+      updateDom(true);
+    }
+
+    else if (currentScore > targetNum) {
+      losses++;
+      setup();
+      updateDom(false);
+    }
+  });
   
 });

@@ -35,10 +35,7 @@
 
           <div id="instructions" class="panel-body">
             <p><small>
-                At the beginning of each round you'll be given a random number. Each of the crystals below, when
-                clicked, will add a specific amount of points to your score. To win the game you must match your score
-                to the target score. If you go above the target score you'll lose. The value of each crystal is
-                randomized at the start of each round, and hidden until clicked.
+                At the beginning of each round you'll be given a random number. Each of the crystals below, when clicked, will add a specific amount of points to your score. To win the game you must match your score to the target score. If you go above the target score you'll lose. The value of each crystal is randomized at the start of each round, and hidden until clicked.
               </small></p>
           </div>
 
@@ -75,7 +72,7 @@
           </div>
 
           <div class="panel-body">
-            <h3 class="text-center"></h3>
+            <h3 class="text-center" id="current-score"></h3>
           </div>
 
         </div>
@@ -89,7 +86,7 @@
             <h3 class="panel-title text-center">| Rupees!!! |</h3>
           </div>
 
-          <div class="panel-body text-center">
+          <div class="panel-body text-center" id="crystal-area">
             <img class="rupee" src="./assets/images/green.gif" alt="green">
 
             <img class="rupee" src="./assets/images/blue.gif" alt="blue">
@@ -116,7 +113,7 @@
           </div>
 
           <div class="panel-body">
-            <h3 class="text-center" id="win-count">0</h3>
+            <h3 class="text-center"><span id="win-count">0</span></h3>
           </div>
 
         </div>
@@ -132,7 +129,7 @@
           </div>
 
           <div class="panel-body">
-            <h3 class="text-center" id="loss-count">0</h3>
+            <h3 class="text-center"><span id="loss-count">0</span></h3>
           </div>
 
         </div>
@@ -144,10 +141,10 @@
   <!-- container end -->
 
   <!-- jquery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/core.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
 
   <!-- logic -->
-  <script src="/assets/javascript/game.js"></script>
+  <script type="text/javascript" src="./assets/javascript/game.js"></script>
 
 </body>
 
