@@ -1,18 +1,18 @@
 
 // Delay Execution
-$(document).ready(function() {
+$(document).ready(function () {
 
   // global variables<<<
   let currentScore = 0;
   let targetNum = numGen();
   let wins = 0;
-  let losses = 0
+  let losses = 0;
   let crystals;
   // >>>
 
   // crystal object generator
   function crystalNums() {
-    
+
     return {
 
       red: {
@@ -62,37 +62,28 @@ $(document).ready(function() {
 
   // update page
   function updateDom(userWin) {
-    
+
     $("#win-count").empty();
 
     if (userWin) {
-      $("#win-count").append($("<h3>").text('you Won!!'));
+      $("#win-count").append($("<span>").text('you Won!!'));
       setup();
       renderScore();
     } else {
-      $("#loss-count").append($("<h3>").text('You Lost!!'));
+      $("#loss-count").append($("<span>").text('You Lost!!'));
       setup();
       renderScore();
     }
 
     // build and append win/loss display
-    let win = $("<span>").text(wins);
-    let lose = $("<span>").text(losses);
-
-    let winPG = $("<h3>").text("Wins: ");
-    let losePG = $("<h3>").text("Losses: ");
-
-    winPG.append(win);
-    losePG.append(lose);
-
-    $("#win-count").append(winPG);
-    $("#loss-count").append(losePG);
+    $("#win-count").append(wins);
+    $("#loss-count").append(losses);
   }
   // >>>
 
   // render crystals
   function renderCrystals() {
-    
+
     for (let key in crystals) {
 
       let crystalDiv = $("<div class='crystals-button' data-name='" + key + "'>");
@@ -130,7 +121,7 @@ $(document).ready(function() {
   renderScore();
 
   // on.click event for crystals
-  $(".rupee").on("click", function(event) {
+  $(".rupee").on("click", function (event) {
     updateScore($(this));
     renderScore();
 
@@ -147,5 +138,5 @@ $(document).ready(function() {
       updateDom(false);
     }
   });
-  
+
 });
