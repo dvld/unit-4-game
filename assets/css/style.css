@@ -2,7 +2,6 @@ body {
   background-position-x: -25%;
   background-position-y: -150%;
   background-image: url('../images/maybe.gif');
-  background-repeat: no-repeat;
 }
 
 .jumbotron {

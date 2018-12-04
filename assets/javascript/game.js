@@ -1,142 +1,148 @@
 
-// Delay Execution
-$(document).ready(function () {
+// delay execution
+$(document).ready(function() {
 
-  // global variables<<<
-  let currentScore = 0;
-  let targetNum = numGen();
-  let wins = 0;
-  let losses = 0;
-  let crystals;
+  // global variables
+  var currentScore = 0;
+  var targetScore;
+  var wins = 0;
+  var losses = 0;
+  var crystals;
   // >>>
 
-  // crystal object generator
-  function crystalNums() {
+  // create rupees object
+  crystals = {
 
-    return {
+    red: {
+      amount: 0,
+      url: "assets/images/red.gif"
+    },
 
-      red: {
-        amount: Math.floor(Math.random() * 12) + 1,
-        url: 'assets/images/red.gif'
-      },
+    blue: {
+      amount: 0,
+      url: "assets/images/blue.gif"
+    },
 
-      blue: {
-        amount: Math.floor(Math.random() * 12) + 1,
-        url: 'assets/images/blue.gif'
-      },
+    green: {
+      amount: 0,
+      url: "assets/images/green.gif"
+    },
 
-      green: {
-        amount: Math.floor(Math.random() * 12) + 1,
-        url: 'assets/images/green.gif'
-      },
+    yellow: {
+      amount: 0,
+      url:"assets/images/yellow.png"
+    }
+  };
+  // >>>
 
-      yellow: {
-        amount: Math.floor(Math.random() * 12) + 1,
-        url: 'assets/images/yellow.png'
-      }
-    };
+  // create random number generator
+  function numGen(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
   // >>>
 
-  // creates number between 19 and 120
-  function numGen() {
-
-    return Math.floor(Math.random() * 102) + 19;
-  }
-  // >>>
-
-  // game reset
+  // initial setup and game reset
   function setup() {
 
-    // reset score
+    // reset player score
     currentScore = 0;
 
-    // new crystal values
-    crystals = crystalNums();
+    // generate crystal values
+    crystals.red.amount = numGen(1, 12);
+    crystals.blue.amount = numGen(1, 12);
+    crystals.green.amount = numGen(1, 12);
+    crystals.yellow.amount = numGen(1, 12);
 
-    // new target number
-    targetNum = numGen();
-    $("#target-score").text(targetNum);
+    // generate target score
+    targetScore = numGen(19, 120);
+
+    // append player current score
+    $("#current-score").text(currentScore);
+    
+    // append new target score
+    $("#target-score").text(targetScore);
+
+    // test
+    console.log("Target Score is : " + targetScore);
+    console.log("Red : " + crystals.red.amount);
+    console.log("Blue : " + crystals.blue.amount);
+    console.log("Green : " + crystals.green.amount);
+    console.log("Yellow : " + crystals.yellow.amount);
   }
   // >>>
 
-  // update page
-  function updateDom(userWin) {
+  // check for win or loss
+  function winOrLose() {
+    if (currentScore > targetScore) {
 
-    $("#win-count").empty();
+      // alert user
+      alert("Sorry, You Lose!");
 
-    if (userWin) {
-      $("#win-count").append($("<span>").text('you Won!!'));
-      setup();
-      renderScore();
-    } else {
-      $("#loss-count").append($("<span>").text('You Lost!!'));
-      setup();
-      renderScore();
-    }
+      // test
+      console.log("Loss");
 
-    // build and append win/loss display
-    $("#win-count").append(wins);
-    $("#loss-count").append(losses);
-  }
-  // >>>
-
-  // render crystals
-  function renderCrystals() {
-
-    for (let key in crystals) {
-
-      let crystalDiv = $("<div class='crystals-button' data-name='" + key + "'>");
-
-      let crystalImg = $("<img alt='image' class='rupee'>").attr('src', crystals[key].url);
-
-      crystalDiv.append(crystalImg);
-
-      $("#crystal-area").append(crystalDiv);
-    }
-  }
-  // >>>
-
-  // update current score
-  function updateScore(crystal) {
-
-    currentScore += crystals[crystal.attr("data-name")].amount;
-  }
-  // >>>
-
-  // render current score
-  function renderScore() {
-
-    let scoreNumDiv = $("<div id='score-number'>").text(currentScore);
-
-    $("#current-score").html();
-    $("#current-score").html(scoreNumDiv);
-  }
-  // >>>
-
-  // call functions to start game
-  setup();
-  updateDom();
-  renderCrystals();
-  renderScore();
-
-  // on.click event for crystals
-  $(".rupee").on("click", function (event) {
-    updateScore($(this));
-    renderScore();
-
-    // check for win/loss
-    if (currentScore === targetNum) {
-      wins++;
-      setup();
-      updateDom(true);
-    }
-
-    else if (currentScore > targetNum) {
+      // add to losses
       losses++;
+
+      // append loss count
+      $("#loss-count").text(losses);
+
+      // reset game
       setup();
-      updateDom(false);
+
+    } else if (currentScore === targetScore) {
+
+      // alert user
+      alert("You Win!!!");
+
+      // test
+      console.log("Win");
+
+      // add to wins
+      wins++;
+
+      // append win count
+      $("#win-count").text(wins);
+
+      // reset game
+      setup();
+
     }
+  }
+
+  // crystal click response
+  function addToScore(crystalClick) {
+
+    // add to current score
+    currentScore += crystalClick.amount;
+
+    // append current score
+    $("#current-score").text(currentScore);
+
+    // check for win or loss
+    winOrLose();
+
+    console.log("Current score is : " + currentScore);
+  }
+
+  // initialize game
+  setup();
+
+  // on click events
+  $("#red").click(function() {
+    addToScore(crystals.red);
+  });
+
+  $("#blue").click(function() {
+    addToScore(crystals.blue);
+  });
+
+  $("#green").click(function() {
+    addToScore(crystals.green);
+  });
+
+  $("#yellow").click(function() {
+    addToScore(crystals.yellow);
   });
 
 });
