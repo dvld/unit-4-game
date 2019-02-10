@@ -11,9 +11,26 @@ body {
 }
 
 .rupee {
+  margin: 6px;
   width: 100px;
   height: 100px;
   float: left;
+  border-radius: 50%;
+  background-color: seagreen;
+  border: 3px solid seagreen;
+  background-size: cover;
+}
+
+.rupee:hover {
+  transform: scale(1.1);
+  transition: ease-in-out 0.15s;
+}
+
+.rupee:active {
+  box-shadow: 0 3px 0 gray;
+  bottom: -4px;
+  transform: scale(1);
+
 }
 
 #instructionTitle {
