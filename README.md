@@ -20,3 +20,7 @@
 * CSS
 
 * jQuery
+
+#### Deployed with Github pages
+
+* https://dvld.github.io/unit-4-game/
